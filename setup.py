@@ -9,7 +9,9 @@ setup(
     author='Mart van de Ven',
     author_email='m@type.hk',
     packages=['openplatform'],
-    description='Fabric scripts for Open Platoform Useful towel-related stuff.',
+    package_data={'': ['*.sh']},
+    include_package_data=True,    
+description='Fabric scripts for Open Platoform Useful towel-related stuff.',
     install_requires=[
         "Fabric >= 1.8.3",
     ],
