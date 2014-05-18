@@ -14,7 +14,7 @@ env.project_name = ''                 # e.g. 'opengov'
 env.project_url = ''                  # e.g. 'opengov.hk'
 env.hosts = ['128.199.212.155']       # default to open platform
 env.path = '/var/www/%(project_url)s' % env
-env.user = 'su_' + project_name             
+env.user = 'su_odhk'
 
 env.github_account = 'ODHK'           # e.g. 'ODHK'
 env.github_repo = ''                  # e.g. 'opengov.hk'
