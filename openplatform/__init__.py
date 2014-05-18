@@ -221,14 +221,15 @@ def update_system():
 
 def setup_shell():
     with cd('$HOME'):
-        run('curl -L http://install.ohmyz.sh | sh')
+        with settings(warn_only=True):
+            run('curl -L http://install.ohmyz.sh | sh')
         sudo('chsh $USER -s $(which zsh);')
-        run('usermod -s $(which zsh);')
+        run('usermod -s $(which zsh) $USER;')
         run('curl https://gist.githubusercontent.com/tijptjik/97e1e0380a21249b49d9/raw/9071ee07f29cad69cad70d82d3f1f55033080561/prose.zsh-theme >> .oh-my-zsh/themes/prose.zsh-theme')
         run('mkdir -p $HOME/.tools')
         with settings(warn_only=True):
             run('git clone https://github.com/rupa/z.git $HOME/.tools/z')
-        run('curl https://gist.githubusercontent.com/tijptjik/ac9555e37364287aac37/raw/ecd9fec1fb1e5e4de1181e31e852ddb7205c640b/.zshrc > .zshrc'    )
+        run('curl https://gist.githubusercontent.com/tijptjik/ac9555e37364287aac37/raw/ecd9fec1fb1e5e4de1181e31e852ddb7205c640b/.zshrc > .zshrc')
         run('source $HOME/.zshrc')
 
 def setup_ubuntu():
@@ -372,7 +373,8 @@ def permissions():
 # OS
 
 def osname():
-    script_file = open('osdetection.sh')
+    import openplatform
+    script_file = open(openplatform.__path__[0] +'/osdetection.sh')
     os = run(script_file.read())
     script_file.close()
     return os
