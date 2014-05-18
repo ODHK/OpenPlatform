@@ -5,7 +5,7 @@ except ImportError:
 
 setup(
     name='OpenPlatform',
-    version='0.0.1',
+    version='0.0.2',
     author='Mart van de Ven',
     author_email='m@type.hk',
     packages=['openplatform'],
