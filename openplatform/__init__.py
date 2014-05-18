@@ -129,13 +129,15 @@ def test():
 
 def create_user(username, password, admin='no'):
     "Create unix user, supply admin=yes for sudo enabled accounts"
-    with settings(user='root'):
+    with settings(user='root',warn_only=True):
 
         if admin == 'yes':
         # Create the admin group and add it to the sudoers file
             admin_group = 'admin'
-            run('addgroup {group}'.format(group=admin_group))
-            run('echo "%{group} ALL=(ALL) ALL" >> /etc/sudoers'.format(
+            if 1 == run('egrep -i "^%{group}" /etc/group').format(
+                group=admin_group):
+                run('addgroup {group}'.format(group=admin_group))
+                run('echo "%{group} ALL=(ALL) ALL" >> /etc/sudoers'.format(
                 group=admin_group))
 
         # Create the new user (default group=username);
