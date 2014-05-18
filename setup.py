@@ -8,6 +8,6 @@ setup(
     packages=['openplatform'],
     description='Fabric scripts for Open Platoform Useful towel-related stuff.',
     install_requires=[
-        "Fabric = 1.8.3"
+        "Fabric >= 1.8.3",
     ],
 )
